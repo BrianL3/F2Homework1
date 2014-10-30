@@ -1,4 +1,4 @@
-// Playground - noun: a place where people can play
+// Homework F2 Session 1
 
 import UIKit
 
@@ -29,7 +29,14 @@ class Person{
     var firstName : String = "firstname not set"
     var lastName : String = "lastname not set"
     var isStudent : Bool = false
-    var studentStatus : Status;
+    var studentStatus : Status
+    
+    init(firstName : String, lastName : String, isStudent : Bool){
+        self.firstName = firstName
+        self.lastName = lastName
+        self.isStudent = isStudent
+        self.studentStatus = .non
+    }
 
     
     init(firstName : String, lastName : String, isStudent : Bool, status: Status){
@@ -56,7 +63,16 @@ class Person{
         return (fullName, self.isStudent, self.studentStatus.rawValue)
     }
 }
+/**
+============
+start tests
+============
+*/
+//testing the basic initializer
+var basicInitPerson = Person(firstName: "Andy", lastName: "Personman", isStudent: false)
+basicInitPerson.fullData()
 
+//esting the more advanced initializer with enum status
 var jimmy = Person(firstName: "Jim", lastName: "Henson", isStudent: false, status: .non)
 jimmy.isNamed()
 jimmy.namesAsTuple()
