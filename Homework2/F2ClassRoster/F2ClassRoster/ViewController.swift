@@ -9,44 +9,52 @@
 import UIKit
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource {
     
     
     @IBOutlet weak var nameLabel: UILabel!
-    
+    // a Person property, to be passed around as necessary.  See Person.swift
     var myPerson = Person(firstName: "Jimmy", lastName: "Carter", isStudent: false)
+    // an Array of Person objects, to populate the viewing table.
+    var people = [Person]()
+    // the viewing table
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let redBox = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        redBox.backgroundColor = UIColor.redColor()
-        self.view.addSubview(redBox)
-        // Do any additional setup after loading the view, typically from a nib.
+        self.tableView.dataSource = self
+        var anotherPerson = Person()
+        self.people.append(myPerson) //this appends myPerson to array
+        self.people.append(anotherPerson)
     }
+    /* This is the first of the 2 required functions for classes that want to adhere to the TableViewDataSource protocol.
+    It returns the number of cells to display.
+    */    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.people.count
+    }
+    
+/* This is the second of the 2 required functions for classes that want to adhere to the TableViewDataSource protocol.
+    It returns the contents of the cell-to-display.
+*/
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        println("table view is asking about cell at row: \(indexPath.row) at section: \(indexPath.section)")
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("PERSON_CELL", forIndexPath: indexPath) as UITableViewCell
+        var personToDisplay = self.people[indexPath.row]
+        cell.textLabel.text = personToDisplay.firstName
+        return cell
+    }
+    
 
     @IBAction func displayViaLabel(sender: AnyObject) {
         self.nameLabel.text = self.myPerson.firstName
-    }
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // When button is pressed, create a person with appropriate values.
     @IBAction func addPerson(){
         self.myPerson = Person(firstName: "firstnametest", lastName: "lastnametest", isStudent: false)
+        self.people.append(myPerson)
+        self.tableView.reloadData()
     }
     
     @IBAction func printlnPersonData(){
