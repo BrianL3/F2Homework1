@@ -66,7 +66,10 @@ class Person{
 
 class ViewController: UIViewController {
     
-    var myPerson = Person(firstName: "Jimmmy", lastName: "Carter", isStudent: false)
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    var myPerson = Person(firstName: "Jimmy", lastName: "Carter", isStudent: false)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +79,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+    @IBAction func displayViaLabel(sender: AnyObject) {
+        self.nameLabel.text = self.myPerson.firstName
+    }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -111,13 +117,22 @@ class ViewController: UIViewController {
         alert.addButtonWithTitle("Cancel")
         alert.show()
     }
-    @IBAction func changeFirstNameViaUIAlertController(sender: AnyObject){
-    //    let message = "Alert Controller Message"
-//        var alert = UIAlertController(title: "Current Name is \(self.myPerson.firstName)", message: message, preferredStyle: .Alert) alert.preferredStyle = textInputMode
-   //     let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
-     //   alert.addAction(action)
-    //    presentViewController(alert, animated: true, completion: nil)
+    @IBAction func displayName(sender: AnyObject){
+        let alert = UIAlertController()
+        alert.title = "The current person's name is \(self.myPerson.firstName)"
+        let action = UIAlertAction(title: "Okay", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+        
+        /*
+        let message = "Alert Controller Message"
+        var alert = UIAlertController(title: "Current Name is \(self.myPerson.firstName)", message: message, preferredStyle: .Alert) alert.preferredStyle = textInputMode
+        let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+        */
     }
+    
 }
 
 /*
