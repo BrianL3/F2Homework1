@@ -37,6 +37,11 @@ class Person{
     var isStudent : Bool = false
     var studentStatus : Status
     
+    init(){
+        self.studentStatus = .non
+    }
+    
+    
     init(firstName : String, lastName : String, isStudent : Bool){
         self.firstName = firstName
         self.lastName = lastName
