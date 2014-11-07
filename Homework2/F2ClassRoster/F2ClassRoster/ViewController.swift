@@ -11,13 +11,13 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource {
     
-    
+        // for the nameLabel
     @IBOutlet weak var nameLabel: UILabel!
-    // a Person property, to be passed around as necessary.  See Person.swift
-    var myPerson = Person(firstName: "Jimmy", lastName: "Carter", isStudent: false)
-    // an Array of Person objects, to populate the viewing table.
+        // a Person property, to be passed around as necessary.  See Person.swift
+    var myPerson = Person(firstName:"Jim", lastName:"Henson", isStudent:true, status: .prof)
+        // an Array of Person objects, to populate the viewing table.
     var people = [Person]()
-    // the viewing table
+        // the viewing table
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -27,38 +27,56 @@ class ViewController: UIViewController, UITableViewDataSource {
         self.people.append(myPerson) //this appends myPerson to array
         self.people.append(anotherPerson)
     }
-    /* This is the first of the 2 required functions for classes that want to adhere to the TableViewDataSource protocol.
+    /* 
+    This is the first of the 2 required functions for classes that want to adhere to the TableViewDataSource protocol.
     It returns the number of cells to display.
     */    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.people.count
     }
     
-/* This is the second of the 2 required functions for classes that want to adhere to the TableViewDataSource protocol.
+    /* 
+    This is the second of the 2 required functions for classes that want to adhere to the TableViewDataSource protocol.
     It returns the contents of the cell-to-display.
-*/
+    */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         println("table view is asking about cell at row: \(indexPath.row) at section: \(indexPath.section)")
         
         let cell = tableView.dequeueReusableCellWithIdentifier("PERSON_CELL", forIndexPath: indexPath) as UITableViewCell
         var personToDisplay = self.people[indexPath.row]
         cell.textLabel.text = personToDisplay.firstName
+        println("printing cell contents at \(indexPath.row)")
         return cell
     }
     
-
-    @IBAction func displayViaLabel(sender: AnyObject) {
-        self.nameLabel.text = self.myPerson.firstName
-    }
+    /*
+    This function is used when you need to segue but don't have a storyboard action linked in.
     
-    // When button is pressed, create a person with appropriate values.
+    override func performSegueWithIdentifier(identifier: String?, sender: AnyObject?) {
+        // your code
+    }
+    */
+    /*
+    This method contains the code that happens when this scene prepares to segue into another scene.  
+    Add more segue.identifiers (and be sure to name them in storyboard) for different paths
+    */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "SHOW_DETAIL" {
+                // making the a local variable to hold the detailViewController (our next scene)
+            let myDetailViewController = segue.destinationViewController as detailViewController
+                // next, we grab the indexPath for the currently selected row in our tableView
+            let selectedIndexPath = tableView.indexPathForSelectedRow()
+                //  then we select the person at our selected row
+            let selectedPerson : Person = people[selectedIndexPath!.row]
+            
+            myDetailViewController.personToDetail = selectedPerson
+            
+        }
+    }
+    // When button is pressed, create a person with appropriate values.  (currently not used)
     @IBAction func addPerson(){
         self.myPerson = Person(firstName: "firstnametest", lastName: "lastnametest", isStudent: false)
         self.people.append(myPerson)
         self.tableView.reloadData()
-    }
-    
-    @IBAction func printlnPersonData(){
-        println(myPerson.isNamed())
     }
     
     @IBAction func changeFirstName(sender: AnyObject) {

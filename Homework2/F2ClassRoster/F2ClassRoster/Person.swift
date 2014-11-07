@@ -27,7 +27,7 @@ class Person{
         case grad = "Graduate School"
         case prof = "Professional School"
         case voc = "Vocational School"
-        case non = "Not a Student"
+        case non = "not a student"
         init() {
             self = .non
         }
