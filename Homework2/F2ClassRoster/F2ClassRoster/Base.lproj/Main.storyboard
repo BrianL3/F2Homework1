@@ -75,32 +75,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="bothnames label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6Z-V8-mu1">
-                                <rect key="frame" x="16" y="106" width="449" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="firstname label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mjb-83-6IH">
+                                <rect key="frame" x="16" y="168" width="450" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="450" id="Blt-tW-YsQ"/>
+                                    <constraint firstAttribute="height" constant="40" id="hae-9r-AkG"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="firstname label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mjb-83-6IH">
-                                <rect key="frame" x="16" y="175" width="449" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="studentstatus label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSF-5O-0Hl">
+                                <rect key="frame" x="16" y="120" width="450" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="5G3-t5-pwD"/>
+                                    <constraint firstAttribute="width" constant="450" id="ETf-U3-QWg"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="studentstatus label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSF-5O-0Hl">
-                                <rect key="frame" x="16" y="144" width="345" height="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lastname label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zkp-qN-7Vy">
+                                <rect key="frame" x="16" y="216" width="450" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="450" id="2YN-Lg-dwd"/>
+                                    <constraint firstAttribute="height" constant="40" id="Zoq-u1-PkJ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="lastname label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zkp-qN-7Vy">
-                                <rect key="frame" x="16" y="213" width="449" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="bothnames label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6Z-V8-mu1">
+                                <rect key="frame" x="16" y="72" width="450" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="S9d-36-x8b"/>
+                                    <constraint firstAttribute="width" constant="450" id="TB4-be-NF6"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zkp-qN-7Vy" firstAttribute="leading" secondItem="7Bi-2a-E71" secondAttribute="leadingMargin" id="FSN-ws-Yvl"/>
+                            <constraint firstItem="F6Z-V8-mu1" firstAttribute="top" secondItem="XLE-nz-DUG" secondAttribute="bottom" constant="8" id="M8d-cU-mWr"/>
+                            <constraint firstItem="bSF-5O-0Hl" firstAttribute="leading" secondItem="7Bi-2a-E71" secondAttribute="leadingMargin" id="dUK-Tj-UcN"/>
+                            <constraint firstItem="Mjb-83-6IH" firstAttribute="leading" secondItem="7Bi-2a-E71" secondAttribute="leadingMargin" id="gJs-vO-qxl"/>
+                            <constraint firstItem="F6Z-V8-mu1" firstAttribute="leading" secondItem="7Bi-2a-E71" secondAttribute="leadingMargin" id="ibB-eO-I9R"/>
+                            <constraint firstItem="zkp-qN-7Vy" firstAttribute="top" secondItem="Mjb-83-6IH" secondAttribute="bottom" constant="8" id="keo-WZ-zXv"/>
+                            <constraint firstItem="bSF-5O-0Hl" firstAttribute="top" secondItem="F6Z-V8-mu1" secondAttribute="bottom" constant="8" id="rpC-Kc-dWi"/>
+                            <constraint firstItem="Mjb-83-6IH" firstAttribute="top" secondItem="bSF-5O-0Hl" secondAttribute="bottom" constant="8" id="vZT-zG-HQ6"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="firstNameLabel" destination="Mjb-83-6IH" id="3rx-wX-Bd4"/>

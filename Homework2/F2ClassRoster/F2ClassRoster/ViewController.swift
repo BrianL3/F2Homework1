@@ -67,10 +67,10 @@ class ViewController: UIViewController, UITableViewDataSource {
             let selectedIndexPath = tableView.indexPathForSelectedRow()
                 //  then we select the person at our selected row
             let selectedPerson : Person = people[selectedIndexPath!.row]
-            
+                // set the person to be detailed as the person in the selected row
             myDetailViewController.personToDetail = selectedPerson
-            
         }
+        // add additional segue identifier if statements, if necesaary
     }
     // When button is pressed, create a person with appropriate values.  (currently not used)
     @IBAction func addPerson(){

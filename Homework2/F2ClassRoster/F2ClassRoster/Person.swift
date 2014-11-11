@@ -35,10 +35,9 @@ class Person{
     var firstName : String = "firstname not set"
     var lastName : String = "lastname not set"
     var isStudent : Bool = false
-    var studentStatus : Status
+    var studentStatus : Status = Status()
     
     init(){
-        self.studentStatus = .non
     }
     
     
@@ -46,7 +45,6 @@ class Person{
         self.firstName = firstName
         self.lastName = lastName
         self.isStudent = isStudent
-        self.studentStatus = .non
     }
     
     
