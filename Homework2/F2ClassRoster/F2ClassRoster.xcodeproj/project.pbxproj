@@ -15,6 +15,7 @@
 		FA5DFA1D1A01DC3A008DD182 /* F2ClassRosterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5DFA1C1A01DC3A008DD182 /* F2ClassRosterTests.swift */; };
 		FA75919A1A0C36520001672C /* detailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7591991A0C36520001672C /* detailViewController.swift */; };
 		FA86F30D1A087B9600735A37 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA86F30C1A087B9600735A37 /* Person.swift */; };
+		FA9B43481A13E6B700B71715 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B43461A13E6B700B71715 /* EditViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		FA5DFA1C1A01DC3A008DD182 /* F2ClassRosterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F2ClassRosterTests.swift; sourceTree = "<group>"; };
 		FA7591991A0C36520001672C /* detailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailViewController.swift; sourceTree = "<group>"; };
 		FA86F30C1A087B9600735A37 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		FA9B43461A13E6B700B71715 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			children = (
 				FA5DFA081A01DC3A008DD182 /* ViewController.swift */,
 				FA7591991A0C36520001672C /* detailViewController.swift */,
+				FA9B43461A13E6B700B71715 /* EditViewController.swift */,
 			);
 			name = "Controller Layer";
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA9B43481A13E6B700B71715 /* EditViewController.swift in Sources */,
 				FA86F30D1A087B9600735A37 /* Person.swift in Sources */,
 				FA5DFA091A01DC3A008DD182 /* ViewController.swift in Sources */,
 				FA5DFA071A01DC3A008DD182 /* AppDelegate.swift in Sources */,

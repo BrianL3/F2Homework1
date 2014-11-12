@@ -115,15 +115,30 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sW6-3P-uL6">
+                                <rect key="frame" x="32" y="550" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="9Vb-2R-FAb"/>
+                                    <constraint firstAttribute="height" constant="30" id="bcX-Fb-vXB"/>
+                                </constraints>
+                                <state key="normal" title="Edit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Zrp-Hi-jko" kind="show" identifier="EDIT_PERSON" id="fE3-yl-Fty"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zkp-qN-7Vy" firstAttribute="leading" secondItem="7Bi-2a-E71" secondAttribute="leadingMargin" id="FSN-ws-Yvl"/>
                             <constraint firstItem="F6Z-V8-mu1" firstAttribute="top" secondItem="XLE-nz-DUG" secondAttribute="bottom" constant="8" id="M8d-cU-mWr"/>
+                            <constraint firstItem="mAh-gC-fQb" firstAttribute="top" secondItem="sW6-3P-uL6" secondAttribute="bottom" constant="20" id="Nm8-y8-s6z"/>
                             <constraint firstItem="bSF-5O-0Hl" firstAttribute="leading" secondItem="7Bi-2a-E71" secondAttribute="leadingMargin" id="dUK-Tj-UcN"/>
                             <constraint firstItem="Mjb-83-6IH" firstAttribute="leading" secondItem="7Bi-2a-E71" secondAttribute="leadingMargin" id="gJs-vO-qxl"/>
                             <constraint firstItem="F6Z-V8-mu1" firstAttribute="leading" secondItem="7Bi-2a-E71" secondAttribute="leadingMargin" id="ibB-eO-I9R"/>
                             <constraint firstItem="zkp-qN-7Vy" firstAttribute="top" secondItem="Mjb-83-6IH" secondAttribute="bottom" constant="8" id="keo-WZ-zXv"/>
+                            <constraint firstItem="sW6-3P-uL6" firstAttribute="leading" secondItem="7Bi-2a-E71" secondAttribute="leadingMargin" constant="16" id="qLF-YO-eVh"/>
                             <constraint firstItem="bSF-5O-0Hl" firstAttribute="top" secondItem="F6Z-V8-mu1" secondAttribute="bottom" constant="8" id="rpC-Kc-dWi"/>
                             <constraint firstItem="Mjb-83-6IH" firstAttribute="top" secondItem="bSF-5O-0Hl" secondAttribute="bottom" constant="8" id="vZT-zG-HQ6"/>
                         </constraints>
@@ -138,6 +153,68 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fhD-kD-5WO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1872" y="185"/>
+        </scene>
+        <!--Edit View Controller-->
+        <scene sceneID="J3M-8l-usU">
+            <objects>
+                <viewController id="Zrp-Hi-jko" customClass="EditViewController" customModule="F2ClassRoster" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="djo-AU-Rjo"/>
+                        <viewControllerLayoutGuide type="bottom" id="bGb-o3-7g9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QY3-Nf-bWk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add and edit details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OEp-o8-P24">
+                                <rect key="frame" x="0.0" y="72" width="154" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jBL-Q0-AcK">
+                                <rect key="frame" x="16" y="101" width="568" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="05U-do-AsZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="editFirstName:" destination="Zrp-Hi-jko" eventType="editingDidEnd" id="Bfg-Ut-v3X"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OcC-kA-zcC">
+                                <rect key="frame" x="24" y="139" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="qSC-7Q-Lwn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="editLastName:" destination="Zrp-Hi-jko" eventType="editingDidEnd" id="8DS-KK-9jC"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jBL-Q0-AcK" firstAttribute="top" secondItem="OEp-o8-P24" secondAttribute="bottom" constant="8" id="CjL-t5-UUD"/>
+                            <constraint firstItem="OEp-o8-P24" firstAttribute="top" secondItem="djo-AU-Rjo" secondAttribute="bottom" constant="8" id="WUi-d8-pSV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jBL-Q0-AcK" secondAttribute="trailing" id="YKZ-Ad-3v8"/>
+                            <constraint firstItem="OcC-kA-zcC" firstAttribute="leading" secondItem="QY3-Nf-bWk" secondAttribute="leadingMargin" constant="8" id="cwW-Cz-O80"/>
+                            <constraint firstItem="OEp-o8-P24" firstAttribute="leading" secondItem="QY3-Nf-bWk" secondAttribute="leading" id="eeu-2t-Kee"/>
+                            <constraint firstItem="jBL-Q0-AcK" firstAttribute="leading" secondItem="QY3-Nf-bWk" secondAttribute="leadingMargin" id="iST-Cx-eyS"/>
+                            <constraint firstItem="OcC-kA-zcC" firstAttribute="top" secondItem="jBL-Q0-AcK" secondAttribute="bottom" constant="8" id="rvE-ev-uhZ"/>
+                            <constraint firstItem="OcC-kA-zcC" firstAttribute="trailing" secondItem="QY3-Nf-bWk" secondAttribute="trailingMargin" id="toT-pI-RFw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="firstNameTextField" destination="jBL-Q0-AcK" id="b3Y-5X-wYK"/>
+                        <outlet property="lastNameTextField" destination="OcC-kA-zcC" id="hTP-ER-qG6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B4H-Ri-Knv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1872" y="1093"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DhU-lp-Gcj">

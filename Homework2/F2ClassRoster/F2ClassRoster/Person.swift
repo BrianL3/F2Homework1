@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 
 /// A bipedal mammal.  Dominant species on planet Earth.
 class Person{
@@ -21,12 +23,12 @@ class Person{
     - Not a Student
     */
     enum Status : String{
-        case prim = "Primary School"
-        case high = "High School"
-        case coll = "College"
-        case grad = "Graduate School"
-        case prof = "Professional School"
-        case voc = "Vocational School"
+        case prim = "Primary School student"
+        case high = "High School student"
+        case coll = "College student"
+        case grad = "Graduate School student"
+        case prof = "Professional School student"
+        case voc = "Vocational School student"
         case non = "not a student"
         init() {
             self = .non
@@ -36,6 +38,7 @@ class Person{
     var lastName : String = "lastname not set"
     var isStudent : Bool = false
     var studentStatus : Status = Status()
+    var picture : UIImage?
     
     init(){
     }

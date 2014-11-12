@@ -32,4 +32,15 @@ class detailViewController: UIViewController {
         self.lastNameLabel.text = self.personToDetail.lastName
         self.studentStatusLabel.text = self.personToDetail.studentStatus.rawValue as NSString
     }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "EDIT_PERSON" {
+            // making the a local variable to hold the detailViewController (our next scene)
+            let myEditViewController = segue.destinationViewController as EditViewController
+            // then, we set the person to be edited
+            let editPerson = self.personToDetail
+            // set the person to be detailed as the person in the selected row
+            myEditViewController.personToEdit = editPerson
+        }
+        // add additional segue identifier if statements, if necesaary
+    }
 }
