@@ -38,9 +38,15 @@ class detailViewController: UIViewController {
             let myEditViewController = segue.destinationViewController as EditViewController
             // then, we set the person to be edited
             let editPerson = self.personToDetail
-            // set the person to be detailed as the person in the selected row
+            // set the person to be detailed as the person in the selected row.  The person is passed as a reference.
             myEditViewController.personToEdit = editPerson
         }
         // add additional segue identifier if statements, if necesaary
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        displayViaLabel()
+        self.title = self.personToDetail.firstName + " " + self.personToDetail.lastName
     }
 }

@@ -35,6 +35,7 @@ class EditViewController: UIViewController,UITextFieldDelegate {
         self.personToEdit.firstName = sender.text
     }
     @IBAction func editLastName(sender: UITextField) {
+        self.personToEdit.lastName = sender.text
     }
     
     func editTextField(editTextField : UITextField){

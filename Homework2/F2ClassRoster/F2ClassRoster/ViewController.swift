@@ -27,6 +27,10 @@ class ViewController: UIViewController, UITableViewDataSource {
         self.people.append(myPerson) //this appends myPerson to array
         self.people.append(anotherPerson)
     }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
     /* 
     This is the first of the 2 required functions for classes that want to adhere to the TableViewDataSource protocol.
     It returns the number of cells to display.
