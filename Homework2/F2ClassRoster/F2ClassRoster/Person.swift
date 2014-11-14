@@ -39,6 +39,7 @@ class Person{
     var isStudent : Bool = false
     var studentStatus : Status = Status()
     var picture : UIImage?
+    var placeholderImage: UIImage = UIImage(named: "placeholder")!
     
     init(){
     }

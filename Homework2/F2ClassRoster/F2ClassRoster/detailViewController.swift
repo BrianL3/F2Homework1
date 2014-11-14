@@ -9,11 +9,9 @@
 import UIKit
 
 class detailViewController: UIViewController {
-
-    @IBOutlet weak var firstNameLabel: UILabel!
-    @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var studentStatusLabel: UILabel!
+    @IBOutlet weak var picImageView: UIImageView!
     
     // This scene's purpose is to detail this person's data.
     var personToDetail = Person(firstName: "name failed to init", lastName: "error", isStudent: false, status: .non)
@@ -22,15 +20,21 @@ class detailViewController: UIViewController {
         super.viewDidLoad()
         self.title = self.personToDetail.firstName + " " + self.personToDetail.lastName
         displayViaLabel()
+        displayPic()
     }
     /*
     Display all of this scene's personToDetail's data on screen via labels.
     */
     @IBAction func displayViaLabel() {
         self.nameLabel.text = self.personToDetail.firstName + " " + self.personToDetail.lastName
-        self.firstNameLabel.text = self.personToDetail.firstName
-        self.lastNameLabel.text = self.personToDetail.lastName
         self.studentStatusLabel.text = self.personToDetail.studentStatus.rawValue as NSString
+    }
+    func displayPic(){
+        if self.personToDetail.picture != nil{
+            self.picImageView.image = self.personToDetail.picture
+        }else{
+        self.picImageView.image = self.personToDetail.placeholderImage
+        }
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "EDIT_PERSON" {
@@ -47,6 +51,7 @@ class detailViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
         displayViaLabel()
+        displayPic()
         self.title = self.personToDetail.firstName + " " + self.personToDetail.lastName
     }
 }
