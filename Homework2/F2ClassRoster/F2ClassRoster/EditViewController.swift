@@ -49,8 +49,9 @@ class EditViewController: UIViewController,UITextFieldDelegate,UIImagePickerCont
     }
     // if the user cancels out of profile pic chooser
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        //
+        // should maybe an animation?  should default.
     }
+    // presents the imagepickercontroller
     @IBAction func changeProfilePicture(sender: AnyObject) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
             self.imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary

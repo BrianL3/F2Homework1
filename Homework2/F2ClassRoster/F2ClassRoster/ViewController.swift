@@ -11,6 +11,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource {
     
+    @IBOutlet weak var personImageView: personTableViewCell!
         // for the nameLabel
     @IBOutlet weak var nameLabel: UILabel!
         // a Person property, to be passed around as necessary.  See Person.swift
@@ -27,10 +28,26 @@ class ViewController: UIViewController, UITableViewDataSource {
         self.people.append(myPerson) //this appends myPerson to array
         self.people.append(anotherPerson)
     }
+    // fires everytime the view will appear, even when going back to this view
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        //refreshes the table's data
         tableView.reloadData()
     }
+    
+    func loadFromPlist(){
+        let plistURL = NSBundle.mainBundle().pathForResource("Roster", ofType: "plist")
+        
+        let plistArray = NSArray(contentsOfFile: plistURL!)
+        
+        for object in plistArray! {
+            //do stuff for each
+        }
+        
+    }
+    
+    
     /* 
     This is the first of the 2 required functions for classes that want to adhere to the TableViewDataSource protocol.
     It returns the number of cells to display.
@@ -42,14 +59,11 @@ class ViewController: UIViewController, UITableViewDataSource {
     This is the second of the 2 required functions for classes that want to adhere to the TableViewDataSource protocol.
     It returns the contents of the cell-to-display.
     */
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println("table view is asking about cell at row: \(indexPath.row) at section: \(indexPath.section)")
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier("PERSON_CELL", forIndexPath: indexPath) as UITableViewCell
-        var personToDisplay = self.people[indexPath.row]
-        cell.textLabel.text = personToDisplay.firstName
-        println("printing cell contents at \(indexPath.row)")
-        return cell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {        
+            let cell = tableView.dequeueReusableCellWithIdentifier("PERSON_CELL", forIndexPath: indexPath) as UITableViewCell
+            var personToDisplay = self.people[indexPath.row]
+            cell.textLabel.text = personToDisplay.firstName
+            return cell
     }
     
     /*

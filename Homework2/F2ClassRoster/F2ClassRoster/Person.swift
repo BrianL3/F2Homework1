@@ -34,8 +34,8 @@ class Person{
             self = .non
         }
     }
-    var firstName : String = "firstname not set"
-    var lastName : String = "lastname not set"
+    var firstName : String = "Add New Person"
+    var lastName : String = " "
     var isStudent : Bool = false
     var studentStatus : Status = Status()
     var picture : UIImage?

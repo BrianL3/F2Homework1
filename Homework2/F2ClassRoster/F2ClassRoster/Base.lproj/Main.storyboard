@@ -43,6 +43,32 @@
                                             <segue destination="817-BT-dY5" kind="show" identifier="SHOW_DETAIL" id="JhI-FV-0EI"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CUSTOM_PERSON_CELL" rowHeight="80" id="x2j-Qz-o2j" customClass="personTableViewCell" customModule="F2ClassRoster" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x2j-Qz-o2j" id="h40-Fq-dhS">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="80T-Yq-4TM">
+                                                    <rect key="frame" x="8" y="5" width="70" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="70" id="LM1-wH-1yP"/>
+                                                        <constraint firstAttribute="width" constant="70" id="mJs-Kw-wt9"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerX" secondItem="80T-Yq-4TM" secondAttribute="centerX" constant="257" id="1fv-Eh-hTL"/>
+                                                <constraint firstItem="80T-Yq-4TM" firstAttribute="leading" secondItem="h40-Fq-dhS" secondAttribute="leadingMargin" id="31x-PT-yr8"/>
+                                                <constraint firstAttribute="centerY" secondItem="80T-Yq-4TM" secondAttribute="centerY" id="BDR-zv-IjS"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="1fv-Eh-hTL"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -61,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1171" y="185"/>
+            <point key="canvasLocation" x="1171" y="184"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="r41-fb-TMM">
