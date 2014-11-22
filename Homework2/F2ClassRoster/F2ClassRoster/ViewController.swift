@@ -24,9 +24,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
-        var anotherPerson = Person()
-        self.people.append(myPerson) //this appends myPerson to array
-        self.people.append(anotherPerson)
+        loadFromPlist()
     }
     // fires everytime the view will appear, even when going back to this view
     override func viewWillAppear(animated: Bool) {
@@ -43,6 +41,12 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         for object in plistArray! {
             //do stuff for each
+            if let personDictionary = object as? NSDictionary{
+                let firstNameFromPlist = personDictionary["firstName"] as String
+                let lastNameFromPlist = personDictionary["lastName"] as String
+                let newPerson = Person(firstName: firstNameFromPlist, lastName: lastNameFromPlist, isStudent: false)
+                self.people.append(newPerson)
+            }
         }
         
     }
@@ -59,10 +63,16 @@ class ViewController: UIViewController, UITableViewDataSource {
     This is the second of the 2 required functions for classes that want to adhere to the TableViewDataSource protocol.
     It returns the contents of the cell-to-display.
     */
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {        
-            let cell = tableView.dequeueReusableCellWithIdentifier("PERSON_CELL", forIndexPath: indexPath) as UITableViewCell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCellWithIdentifier("CUSTOM_PERSON_CELL", forIndexPath: indexPath) as personTableViewCell
             var personToDisplay = self.people[indexPath.row]
-            cell.textLabel.text = personToDisplay.firstName
+            cell.cellNameLabel.text = personToDisplay.firstName
+        //display the cellperson's image, if available
+            if personToDisplay.picture != nil{
+                cell.cellPersonImage.image = personToDisplay.picture
+            }else{
+                cell.cellPersonImage.image = personToDisplay.placeholderImage
+            }
             return cell
     }
     
