@@ -29,7 +29,8 @@ class ViewController: UIViewController, UITableViewDataSource {
     // fires everytime the view will appear, even when going back to this view
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        // saves any new info to disk
+        saveToArchive()
         //refreshes the table's data
         tableView.reloadData()
     }
@@ -49,6 +50,13 @@ class ViewController: UIViewController, UITableViewDataSource {
             }
         }
         
+    }
+    
+    func loadFromArchive(){
+        let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        if let peopleFromArchive = NSKeyedUnarchiver.unarchiveObjectWithFile(path + "/archive") as? [Person]{
+            self.people = peopleFromArchive
+        }
     }
     
     
@@ -98,8 +106,27 @@ class ViewController: UIViewController, UITableViewDataSource {
                 // set the person to be detailed as the person in the selected row
             myDetailViewController.personToDetail = selectedPerson
         }
+        
+        if segue.identifier == "ADD_NEW_PERSON" {
+            // making the a local variable to hold the detailViewController (our next scene)
+            let myEditViewController = segue.destinationViewController as EditViewController
+            // then, we set the person to be edited
+            let newPerson = Person(firstName: "Add New Person", lastName: " ", isStudent: false)
+                // set the person to be detailed as the person in the selected row.  The person is passed as a reference.
+            myEditViewController.personToEdit = newPerson
+            self.people.append(newPerson)
+        }
         // add additional segue identifier if statements, if necesaary
     }
+    
+    func saveToArchive(){
+        // get path to doc directory
+        let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        //archive it
+        NSKeyedArchiver.archiveRootObject(self.people, toFile: path + "/archive")
+    }
+    
+    
     // When button is pressed, create a person with appropriate values.  (currently not used)
     @IBAction func addPerson(){
         self.myPerson = Person(firstName: "firstnametest", lastName: "lastnametest", isStudent: false)

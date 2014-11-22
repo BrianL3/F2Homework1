@@ -11,7 +11,7 @@ import UIKit
 
 
 /// A bipedal mammal.  Dominant species on planet Earth.
-class Person{
+class Person: NSObject, NSCoding {
     /**
     Type of student.
     - Primary School
@@ -41,14 +41,28 @@ class Person{
     var placeholderImage: UIImage = UIImage(named: "placeholder")!
     var picture : UIImage?
     
-    init(){
-    }
-    
-    
     init(firstName : String, lastName : String, isStudent : Bool){
         self.firstName = firstName
         self.lastName = lastName
         self.isStudent = isStudent
+    }
+    
+    
+    //used by NSKeyedUnarchiver to create Person objects from saved data
+    required init(coder aDecoder: NSCoder) {
+        self.firstName = aDecoder.decodeObjectForKey("firstName") as String
+        self.lastName = aDecoder.decodeObjectForKey("lastName") as String
+        if let decodedImage = aDecoder.decodeObjectForKey("image") as? UIImage{
+            self.picture = decodedImage
+        }
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.firstName, forKey: "firstName")
+        aCoder.encodeObject(self.lastName, forKey: "lastName")
+        if let pictar = self.picture?{
+            aCoder.encodeObject(pictar, forKey: "image")
+        }
     }
     
     
