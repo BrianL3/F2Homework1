@@ -24,7 +24,18 @@ class ViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
-        loadFromPlist()
+        if NSUserDefaults.standardUserDefaults().boolForKey("FirstLaunch") == true
+        {
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "FirstLaunch")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            loadFromArchive()
+        }
+        else
+        {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "FirstLaunch")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            loadFromPlist()
+        }
     }
     // fires everytime the view will appear, even when going back to this view
     override func viewWillAppear(animated: Bool) {
@@ -108,11 +119,11 @@ class ViewController: UIViewController, UITableViewDataSource {
         }
         
         if segue.identifier == "ADD_NEW_PERSON" {
-            // making the a local variable to hold the detailViewController (our next scene)
+            // making the a local variable to hold the editViewController (our next scene)
             let myEditViewController = segue.destinationViewController as EditViewController
             // then, we set the person to be edited
-            let newPerson = Person(firstName: "Add New Person", lastName: " ", isStudent: false)
-                // set the person to be detailed as the person in the selected row.  The person is passed as a reference.
+            let newPerson = Person(firstName: "First Name", lastName: "Last Name", isStudent: false)
+                // set the person to be edited as the person in the selected row.  The person is passed as a reference.
             myEditViewController.personToEdit = newPerson
             self.people.append(newPerson)
         }
