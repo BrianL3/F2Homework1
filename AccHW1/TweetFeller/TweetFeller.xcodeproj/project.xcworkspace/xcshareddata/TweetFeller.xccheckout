@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>AE93A033-355F-47CA-A044-551A840E7282</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TweetFeller</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BCCA78D445B59DFA9ADA2FF1244BCC095FE0D7AC</key>
+		<string>https://github.com/BrianL3/F2Homework1.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>AccHW1/TweetFeller/TweetFeller.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BCCA78D445B59DFA9ADA2FF1244BCC095FE0D7AC</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/BrianL3/F2Homework1.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BCCA78D445B59DFA9ADA2FF1244BCC095FE0D7AC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BCCA78D445B59DFA9ADA2FF1244BCC095FE0D7AC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>FoundationsHomework</string>
+		</dict>
+	</array>
+</dict>
+</plist>

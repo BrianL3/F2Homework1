@@ -13,6 +13,9 @@
 		FA3AC21F1A5B3072003DB9FF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA3AC21E1A5B3072003DB9FF /* Images.xcassets */; };
 		FA3AC2221A5B3072003DB9FF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA3AC2201A5B3072003DB9FF /* LaunchScreen.xib */; };
 		FA3AC22E1A5B3072003DB9FF /* TweetFellerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AC22D1A5B3072003DB9FF /* TweetFellerTests.swift */; };
+		FA3AC23B1A5B3154003DB9FF /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AC23A1A5B3154003DB9FF /* Tweet.swift */; };
+		FA3AC23D1A5B321A003DB9FF /* tweet.json in Resources */ = {isa = PBXBuildFile; fileRef = FA3AC23C1A5B321A003DB9FF /* tweet.json */; };
+		FA3AC23F1A5B3A29003DB9FF /* TweetCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AC23E1A5B3A29003DB9FF /* TweetCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		FA3AC2271A5B3072003DB9FF /* TweetFellerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TweetFellerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA3AC22C1A5B3072003DB9FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA3AC22D1A5B3072003DB9FF /* TweetFellerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetFellerTests.swift; sourceTree = "<group>"; };
+		FA3AC23A1A5B3154003DB9FF /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		FA3AC23C1A5B321A003DB9FF /* tweet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tweet.json; sourceTree = "<group>"; };
+		FA3AC23E1A5B3A29003DB9FF /* TweetCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +83,10 @@
 		FA3AC2141A5B3072003DB9FF /* TweetFeller */ = {
 			isa = PBXGroup;
 			children = (
+				FA3AC2391A5B3124003DB9FF /* Controller */,
+				FA3AC2381A5B311D003DB9FF /* View */,
+				FA3AC2371A5B3113003DB9FF /* Model */,
 				FA3AC2171A5B3072003DB9FF /* AppDelegate.swift */,
-				FA3AC2191A5B3072003DB9FF /* ViewController.swift */,
-				FA3AC21B1A5B3072003DB9FF /* Main.storyboard */,
-				FA3AC21E1A5B3072003DB9FF /* Images.xcassets */,
-				FA3AC2201A5B3072003DB9FF /* LaunchScreen.xib */,
 				FA3AC2151A5B3072003DB9FF /* Supporting Files */,
 			);
 			path = TweetFeller;
@@ -110,6 +115,34 @@
 				FA3AC22C1A5B3072003DB9FF /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FA3AC2371A5B3113003DB9FF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FA3AC23C1A5B321A003DB9FF /* tweet.json */,
+				FA3AC23A1A5B3154003DB9FF /* Tweet.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		FA3AC2381A5B311D003DB9FF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA3AC21E1A5B3072003DB9FF /* Images.xcassets */,
+				FA3AC2201A5B3072003DB9FF /* LaunchScreen.xib */,
+				FA3AC21B1A5B3072003DB9FF /* Main.storyboard */,
+				FA3AC23E1A5B3A29003DB9FF /* TweetCellView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		FA3AC2391A5B3124003DB9FF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FA3AC2191A5B3072003DB9FF /* ViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +228,7 @@
 				FA3AC21D1A5B3072003DB9FF /* Main.storyboard in Resources */,
 				FA3AC2221A5B3072003DB9FF /* LaunchScreen.xib in Resources */,
 				FA3AC21F1A5B3072003DB9FF /* Images.xcassets in Resources */,
+				FA3AC23D1A5B321A003DB9FF /* tweet.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,7 +246,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA3AC23B1A5B3154003DB9FF /* Tweet.swift in Sources */,
 				FA3AC21A1A5B3072003DB9FF /* ViewController.swift in Sources */,
+				FA3AC23F1A5B3A29003DB9FF /* TweetCellView.swift in Sources */,
 				FA3AC2181A5B3072003DB9FF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +443,7 @@
 				FA3AC2331A5B3072003DB9FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA3AC2341A5B3072003DB9FF /* Build configuration list for PBXNativeTarget "TweetFellerTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +452,7 @@
 				FA3AC2361A5B3072003DB9FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

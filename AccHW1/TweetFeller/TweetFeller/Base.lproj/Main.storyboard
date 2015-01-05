@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TweetFeller" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,69 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="89" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="t19-PR-yDL">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TWEET_CELL" rowHeight="89" id="1Kz-Jn-EIp" customClass="TweetViewCell" customModule="TweetFeller" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Kz-Jn-EIp" id="Ivg-d1-7PY">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y1P-Jl-9nL">
+                                                    <rect key="frame" x="520" y="12" width="64" height="64"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="V7l-tg-4bI"/>
+                                                        <constraint firstAttribute="width" constant="64" id="tPz-Az-r6u"/>
+                                                        <constraint firstAttribute="height" constant="64" id="zBe-OB-xdq"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akC-El-jat">
+                                                    <rect key="frame" x="15" y="19" width="497" height="53"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Y1P-Jl-9nL" secondAttribute="trailing" constant="8" id="6LD-cX-OSB"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Y1P-Jl-9nL" secondAttribute="bottom" constant="4" id="GaZ-Ku-8rz"/>
+                                                <constraint firstItem="akC-El-jat" firstAttribute="top" secondItem="Ivg-d1-7PY" secondAttribute="topMargin" constant="11" id="VCK-UH-hbG"/>
+                                                <constraint firstItem="Y1P-Jl-9nL" firstAttribute="leading" secondItem="akC-El-jat" secondAttribute="trailing" constant="8" id="ck0-lo-Mg7"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Y1P-Jl-9nL" secondAttribute="bottom" constant="4" id="eg0-Cy-KoO"/>
+                                                <constraint firstItem="Y1P-Jl-9nL" firstAttribute="top" secondItem="Ivg-d1-7PY" secondAttribute="topMargin" constant="-84" id="ekr-eI-BLK"/>
+                                                <constraint firstItem="akC-El-jat" firstAttribute="leading" secondItem="Ivg-d1-7PY" secondAttribute="leadingMargin" constant="7" id="gMI-6I-dNk"/>
+                                                <constraint firstItem="Y1P-Jl-9nL" firstAttribute="top" secondItem="Ivg-d1-7PY" secondAttribute="topMargin" constant="5" id="qn3-8H-rXj"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="akC-El-jat" secondAttribute="bottom" constant="8" id="wQz-Tq-8PA"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="eg0-Cy-KoO"/>
+                                                    <exclude reference="ekr-eI-BLK"/>
+                                                    <exclude reference="qn3-8H-rXj"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="tweetImage" destination="Y1P-Jl-9nL" id="v6j-Cu-KNI"/>
+                                            <outlet property="tweetLabel" destination="akC-El-jat" id="06M-TI-tE4"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="t19-PR-yDL" id="czh-dp-2qi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="200" y="470"/>
         </scene>
     </scenes>
 </document>
