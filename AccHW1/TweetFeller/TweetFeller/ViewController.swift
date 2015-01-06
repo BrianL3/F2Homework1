@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Social
+import Accounts
 
 class ViewController: UIViewController, UITableViewDataSource {
   var tweets = [Tweet]()
@@ -16,20 +18,55 @@ class ViewController: UIViewController, UITableViewDataSource {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.dataSource = self
+    // begin Twitter API call
+    let accountStore = ACAccountStore()
+    let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+    accountStore.requestAccessToAccountsWithType(accountType, options: nil) { (granted : Bool, error : NSError!) -> Void in
+      if granted {
+        let accounts = accountStore.accountsWithAccountType(accountType)
+        if !accounts.isEmpty {
+          let twitterAccount = accounts.first as ACAccount
+          let requestURL = NSURL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json")
+          let twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: requestURL, parameters: nil)
+          twitterRequest.account = twitterAccount
+          twitterRequest.performRequestWithHandler() { (jsonData, response, error) -> Void in
+            switch response.statusCode {
+            case 200...299:
+              println(response.statusCode)
+              var errorCode : NSError?
+              if let JSONArray = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &errorCode) as [AnyObject]? {
+                //working through all objects in the JSON array
+                for jsonObject in JSONArray{
+                  if let jsonDictionary = jsonObject as? [String : AnyObject] {
+                    let tweet = Tweet(jsonDict: jsonDictionary)
+                    self.tweets.append(tweet)
+                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                      self.tableView.reloadData()
+                    })
+                  }else{ println("failed to iterate through jsonArray") }
+                }
+              }else{ println("failed to serialize JSON blob into array") }
+            case 300...399:
+              println(response.statusCode)
+              println("Error")
+            case 400...499:
+              println(response.statusCode)
+              println("Error")
+            default:
+              println("got a bad, non-500, non-400 response.")
+            }
+          
+          }
+        }
+      }
+    }
+    /*  ==== for use in testing against locally-stored Twitter-formatted .json files ====
     if let jsonPath = NSBundle.mainBundle().pathForResource("tweet", ofType: "json"){
       if let jsonData = NSData(contentsOfFile: jsonPath) as NSData?{
-        var errorCode : NSError?
-        if let JSONArray = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &errorCode) as [AnyObject]? {
-          //working through all objects in the JSON array
-          for jsonObject in JSONArray{
-            if let jsonDictionary = jsonObject as? [String : AnyObject] {
-              let tweet = Tweet(jsonDict: jsonDictionary)
-              self.tweets.append(tweet)
-            }else{ println("failed to iterate through jsonArray") }
-          }
-        }else{ println("failed to serialize JSON blob into array") }
+
       }else{ println("failed to load path into NSData") }
     }else{ println("failed to get JSON path") }
+    */
   }
   /*
   TableViewDataSource protocol functions
@@ -40,11 +77,11 @@ class ViewController: UIViewController, UITableViewDataSource {
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("TWEET_CELL", forIndexPath: indexPath) as TweetViewCell
     let tweet = tweets[indexPath.row]
-    cell.textLabel?.text = tweet.text
-    if let url = tweet.imgURL? {
-      //var data:NSData = NSData(contentsOfURL: tweet.imgURL!, options: nil, error: nil)!
-      //cell.imageView?.image = UIImage(data: data)
+    if tweet.image != nil{
+      cell.tweetImage?.image = tweet.image!
     }
+    cell.tweetLabel?.text = tweet.text
+    cell.usernameLabel?.text = "@" + tweet.author + " tweeted:"
     return cell
   }
   /*

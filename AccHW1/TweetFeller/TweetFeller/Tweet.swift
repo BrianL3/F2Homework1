@@ -13,14 +13,17 @@ class Tweet {
   var text : String = "failed to init"
   var imgURL : NSURL?
   var image : UIImage?
-  var user : NSDictionary
+  var user : [String : AnyObject]
+  var author : String = "Anonymous"
   
   init(jsonDict : [String : AnyObject]){
     self.text = jsonDict["text"] as String
-    self.user = jsonDict["user"] as NSDictionary
+    self.user = jsonDict["user"] as Dictionary
    // if let url = jsonDict["profile_image_url"] as? String{
      // println("????")
-      self.imgURL = NSURL(fileURLWithPath: user["profile_image_url"] as String)!
+    self.image = UIImage(data: NSData(contentsOfURL: NSURL(string: user["profile_image_url"] as String!)!)!)
+      //NSURL(fileURLWithPath: user["profile_image_url"] as String)!
   // }
+    self.author = user["name"] as String!
   }
 }
