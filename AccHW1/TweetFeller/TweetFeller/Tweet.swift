@@ -15,6 +15,8 @@ class Tweet {
   var image : UIImage?
   var user : [String : AnyObject]
   var author : String = "Anonymous"
+  var id : String?
+  var creationData : String?
   
   init(jsonDict : [String : AnyObject]){
     self.text = jsonDict["text"] as String
@@ -25,5 +27,9 @@ class Tweet {
       //NSURL(fileURLWithPath: user["profile_image_url"] as String)!
   // }
     self.author = user["name"] as String!
+    self.id = jsonDict["id_str"] as String!
+    if jsonDict["created_at"] != nil {
+      self.creationData = jsonDict["created_at"] as String!
+    }
   }
 }
