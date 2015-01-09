@@ -1,4 +1,0 @@
-DONE: Replace the UILabels with UITextFields
-DONE: When the user presses the return key, dismiss the keyboard.
-DONE: Use autolayout to layout your detail view controller so that it looks good in both portrait and landscape modes.
-DONE: Add an optional UIImage property to your Person class.

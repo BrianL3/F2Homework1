@@ -14,6 +14,7 @@ class TwitterService {
   
   var accountID : ACAccountType?
   var twitterAccounts = [AnyObject]()
+  var imageQueue = NSOperationQueue()
   
   init(){
   }
@@ -98,6 +99,47 @@ class TwitterService {
     }else{ println("failed to get JSON path") }
     */
   }
+  
+  func fetchTimelineForAuthor(authorID : String, completionHandler : ([Tweet]?, String?) -> ()){
+            let twitterAccount = self.twitterAccounts.first as ACAccount
+    //statuses/user_timeline.json?username (Links to an external site.)=\
+            let requestURL = self.prepRequest("statuses/user_timeline.json?user_id=" + authorID)
+            let twitterRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: requestURL, parameters: nil)
+            twitterRequest.account = twitterAccount
+            twitterRequest.performRequestWithHandler() { (jsonData, response, error) -> Void in
+              switch response.statusCode {
+              case 200...299:
+                println(response.statusCode)
+                var errorCode : NSError?
+                if let JSONArray = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &errorCode) as [AnyObject]? {
+                  //working through all objects in the JSON array
+                  var tweets = [Tweet]()
+                  for jsonObject in JSONArray{
+                    if let jsonDictionary = jsonObject as? [String : AnyObject] {
+                      let tweet = Tweet(jsonDict: jsonDictionary)
+                      tweets.append(tweet)
+                      
+                    }else{ println("failed to iterate through jsonArray") }
+                  }
+                  NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                    completionHandler(tweets, nil)
+                  })
+                }else{ println("failed to serialize JSON blob into array") }
+              case 300...399:
+                var errorResponse = "Error, Code: " + String(response.statusCode)
+                completionHandler(nil, errorResponse)
+              case 400...499:
+                var errorResponse = "Error, Code: " + String(response.statusCode)
+                completionHandler(nil, errorResponse)
+              default:
+                var errorResponse = "Error, Code: " + String(response.statusCode)
+                completionHandler(nil, errorResponse)        }
+            }
+
+    }
+
+  
+  
   func fetchStatus(basicTweet : Tweet, tweetID : String, completionHandler : (Tweet?, String?) -> ()){
     let twitterAccount = self.twitterAccounts.first as ACAccount
     let requestURL = self.prepRequest("statuses/show.json?id=" + tweetID)
@@ -131,4 +173,24 @@ class TwitterService {
     }
   }
   
+  
+  
+  func fetchAuthorImage(tweet: Tweet, completionHandler: (UIImage?) ->()){
+    if let imageURL = tweet.imgURL {
+      //self.imageQueue.maxConcurrentOperationCount = 1  (uncomment to make this a serial queue)
+      self.imageQueue.addOperationWithBlock({ () -> Void in
+        if let imageData = NSData(contentsOfURL: imageURL) {
+          tweet.image = UIImage(data: imageData)
+          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            completionHandler(tweet.image)
+          })
+          
+          //return tweet.image!
+          //        cell.tweetImageView.image = tweet.image
+        }
+        
+      })
+    }
+  }
+
 }

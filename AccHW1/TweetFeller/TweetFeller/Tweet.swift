@@ -17,13 +17,15 @@ class Tweet {
   var author : String = "Anonymous"
   var id : String?
   var creationData : String?
+  var authorID : String?
   
   init(jsonDict : [String : AnyObject]){
     self.text = jsonDict["text"] as String
     self.user = jsonDict["user"] as Dictionary
    // if let url = jsonDict["profile_image_url"] as? String{
      // println("????")
-    self.image = UIImage(data: NSData(contentsOfURL: NSURL(string: user["profile_image_url"] as String!)!)!)
+    self.imgURL = NSURL(string: self.user["profile_image_url"] as String!)
+   // self.image = UIImage(data: NSData(contentsOfURL: NSURL(string: user["profile_image_url"] as String!)!)!)
       //NSURL(fileURLWithPath: user["profile_image_url"] as String)!
   // }
     self.author = user["name"] as String!
@@ -31,5 +33,6 @@ class Tweet {
     if jsonDict["created_at"] != nil {
       self.creationData = jsonDict["created_at"] as String!
     }
+    self.authorID = user["id_str"] as String!
   }
 }

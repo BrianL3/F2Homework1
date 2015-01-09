@@ -17,7 +17,10 @@
 		FA3AC23D1A5B321A003DB9FF /* tweet.json in Resources */ = {isa = PBXBuildFile; fileRef = FA3AC23C1A5B321A003DB9FF /* tweet.json */; };
 		FA3AC23F1A5B3A29003DB9FF /* TweetCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AC23E1A5B3A29003DB9FF /* TweetCellView.swift */; };
 		FA85878B1A5DD504007265FB /* TwitterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85878A1A5DD504007265FB /* TwitterService.swift */; };
-		FA85878D1A5DF3C6007265FB /* AuthorPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85878C1A5DF3C6007265FB /* AuthorPreviewViewController.swift */; };
+		FAD3A5421A5F298A007115F0 /* 120px-Merovingian_Bee.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD3A5411A5F298A007115F0 /* 120px-Merovingian_Bee.svg.png */; };
+		FAD3A5461A5F2D5C007115F0 /* TweetCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD3A5451A5F2D5C007115F0 /* TweetCellView.xib */; };
+		FAD3A5481A5F4CAB007115F0 /* TweetDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3A5471A5F4CAB007115F0 /* TweetDetail.swift */; };
+		FAD3A54A1A5F57B4007115F0 /* AuthorTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3A5491A5F57B4007115F0 /* AuthorTimeline.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +48,10 @@
 		FA3AC23C1A5B321A003DB9FF /* tweet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tweet.json; sourceTree = "<group>"; };
 		FA3AC23E1A5B3A29003DB9FF /* TweetCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCellView.swift; sourceTree = "<group>"; };
 		FA85878A1A5DD504007265FB /* TwitterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterService.swift; sourceTree = "<group>"; };
-		FA85878C1A5DF3C6007265FB /* AuthorPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorPreviewViewController.swift; sourceTree = "<group>"; };
+		FAD3A5411A5F298A007115F0 /* 120px-Merovingian_Bee.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "120px-Merovingian_Bee.svg.png"; path = "Images.xcassets/120px-Merovingian_Bee.svg.png"; sourceTree = "<group>"; };
+		FAD3A5451A5F2D5C007115F0 /* TweetCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetCellView.xib; sourceTree = "<group>"; };
+		FAD3A5471A5F4CAB007115F0 /* TweetDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetail.swift; sourceTree = "<group>"; };
+		FAD3A5491A5F57B4007115F0 /* AuthorTimeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorTimeline.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,9 +140,11 @@
 			isa = PBXGroup;
 			children = (
 				FA3AC21E1A5B3072003DB9FF /* Images.xcassets */,
+				FAD3A5411A5F298A007115F0 /* 120px-Merovingian_Bee.svg.png */,
 				FA3AC2201A5B3072003DB9FF /* LaunchScreen.xib */,
 				FA3AC21B1A5B3072003DB9FF /* Main.storyboard */,
 				FA3AC23E1A5B3A29003DB9FF /* TweetCellView.swift */,
+				FAD3A5451A5F2D5C007115F0 /* TweetCellView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -146,7 +154,8 @@
 			children = (
 				FA3AC2191A5B3072003DB9FF /* ViewController.swift */,
 				FA85878A1A5DD504007265FB /* TwitterService.swift */,
-				FA85878C1A5DF3C6007265FB /* AuthorPreviewViewController.swift */,
+				FAD3A5471A5F4CAB007115F0 /* TweetDetail.swift */,
+				FAD3A5491A5F57B4007115F0 /* AuthorTimeline.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -231,10 +240,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD3A5461A5F2D5C007115F0 /* TweetCellView.xib in Resources */,
 				FA3AC21D1A5B3072003DB9FF /* Main.storyboard in Resources */,
 				FA3AC2221A5B3072003DB9FF /* LaunchScreen.xib in Resources */,
 				FA3AC21F1A5B3072003DB9FF /* Images.xcassets in Resources */,
 				FA3AC23D1A5B321A003DB9FF /* tweet.json in Resources */,
+				FAD3A5421A5F298A007115F0 /* 120px-Merovingian_Bee.svg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,12 +263,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD3A5481A5F4CAB007115F0 /* TweetDetail.swift in Sources */,
 				FA3AC23B1A5B3154003DB9FF /* Tweet.swift in Sources */,
 				FA3AC21A1A5B3072003DB9FF /* ViewController.swift in Sources */,
-				FA85878D1A5DF3C6007265FB /* AuthorPreviewViewController.swift in Sources */,
 				FA85878B1A5DD504007265FB /* TwitterService.swift in Sources */,
 				FA3AC23F1A5B3A29003DB9FF /* TweetCellView.swift in Sources */,
 				FA3AC2181A5B3072003DB9FF /* AppDelegate.swift in Sources */,
+				FAD3A54A1A5F57B4007115F0 /* AuthorTimeline.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,7 @@ import UIKit
 import Social
 import Accounts
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   var tweets = [Tweet]()
   
   @IBOutlet weak var tableView: UITableView!
@@ -20,6 +20,9 @@ class ViewController: UIViewController, UITableViewDataSource {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.dataSource = self
+    tableView.delegate = self
+    self.tableView.registerNib(UINib(nibName: "TweetCellView", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "TweetCell")
+
     // begin Twitter API call
     self.twitterService.fetchHomeTimeline { (tweets, errorString) -> () in
       if errorString == nil {
@@ -37,20 +40,43 @@ class ViewController: UIViewController, UITableViewDataSource {
     return tweets.count
   }
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("TWEET_CELL", forIndexPath: indexPath) as TweetViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as TweetViewCell
     let tweet = tweets[indexPath.row]
-    if tweet.image != nil{
-      cell.tweetImage?.image = tweet.image!
+    
+    if tweet.image == nil{
+      twitterService.fetchAuthorImage(tweet, completionHandler: { (image) -> () in
+        tweet.image = image?
+        self.tableView.reloadData()
+      })
+    }else{
+      cell.authorImage?.image = tweet.image
     }
-    cell.tweetLabel?.text = tweet.text
-    cell.usernameLabel?.text = "@" + tweet.author + " tweeted:"
+    
+    cell.tweetText?.text = tweet.text
+    cell.authorName?.text = "@" + tweet.author + " tweeted:"
     return cell
   }
-  /* === in case we want to do something fancy with already clicked-on tweets ===
+  
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if let cell = tableView.cellForRowAtIndexPath(indexPath){
       let tweet = tweets[indexPath.row]
     }
+    let tweetVC = self.storyboard?.instantiateViewControllerWithIdentifier("TWEET_VC") as TweetDetail
+    tweetVC.twitterService = self.twitterService
+    tweetVC.tweetInFocus = self.tweets[indexPath.row]
+    self.navigationController?.pushViewController(tweetVC, animated: true)
+
+  }
+
+  /*
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  println(indexPath.row)
+  
+  let tweetVC = self.storyboard?.instantiateViewControllerWithIdentifier("TWEET_VC") as TweetViewController
+  tweetVC.networkController = self.networkController
+  tweetVC.tweet = self.tweets[indexPath.row]
+  self.navigationController?.pushViewController(tweetVC, animated: true)
+  
   }
 */
   
@@ -63,6 +89,7 @@ class ViewController: UIViewController, UITableViewDataSource {
   /*
   Segues
   */
+  /*
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "PREVIEW_AUTHOR"{
       let newDetailController = segue.destinationViewController as AuthorPreviewViewController
@@ -72,6 +99,7 @@ class ViewController: UIViewController, UITableViewDataSource {
       newDetailController.twitterService = self.twitterService
     }
   }
+*/
   
   
 }

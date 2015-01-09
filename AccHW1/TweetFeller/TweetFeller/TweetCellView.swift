@@ -9,9 +9,16 @@
 import UIKit
 
 class TweetViewCell : UITableViewCell {
-  @IBOutlet weak var tweetLabel: UILabel!
-  @IBOutlet weak var tweetImage: UIImageView!
-  @IBOutlet weak var usernameLabel: UILabel!
+
+
+  @IBOutlet weak var authorImage: UIImageView!
+  @IBOutlet weak var authorName: UILabel!
+  @IBOutlet weak var tweetText: UILabel!
+  
+  
+  //@IBOutlet weak var tweetLabel: UILabel!
+  //@IBOutlet weak var tweetImage: UIImageView!
+  //@IBOutlet weak var usernameLabel: UILabel!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -19,4 +26,5 @@ class TweetViewCell : UITableViewCell {
   override func setSelected(selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: true)
   }
+  
 }
