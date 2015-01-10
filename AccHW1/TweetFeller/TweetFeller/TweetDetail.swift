@@ -23,11 +23,32 @@ class TweetDetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
     tableView.dataSource = self
     tableView.delegate = self
     self.tableView.registerNib(UINib(nibName: "TweetCellView", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "TweetCell")
+    self.tableView.estimatedRowHeight = 120
+    self.tableView.rowHeight = UITableViewAutomaticDimension
+    // setting up the header to load from the TweetHeader nib
+    let headerArray = NSBundle.mainBundle().loadNibNamed("TweetHeader", owner: self, options: nil)
+    let headerView = headerArray.first as TweetHeader
+    self.tableView.tableHeaderView?.addSubview(headerView)
 
     if twitterService != nil{
       self.twitterService?.fetchStatus(tweetInFocus!, tweetID: tweetInFocus!.id!, completionHandler: { (tweet, errorDescription) -> () in
         self.tweetInFocus = tweet
       })
+    }
+    if tweetInFocus != nil{
+      headerView.nameLabel?.text = tweetInFocus?.author
+      headerView.profilePictureButton.setBackgroundImage(tweetInFocus?.image, forState: .Normal)
+      headerView.locationLabel?.text = tweetInFocus?.userLocation
+      if tweetInFocus!.timesFavorited != nil {
+        headerView.faveCount?.text = String(self.tweetInFocus!.timesFavorited!) + " favorites"
+      }
+
+      if tweetInFocus?.profileUsesBackgroundImage == true {
+        twitterService!.fetchAuthorBackgroundImage(tweetInFocus!, completionHandler: {(image) -> () in
+          println("this is a placeholder")
+          headerView.backgroundColor = UIColor(patternImage: image!)
+        })
+      }
     }
     //textLabel?.text = tweetInFocus?.text
     //dateLabel?.text = tweetInFocus?.creationData?
@@ -36,6 +57,7 @@ class TweetDetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as TweetViewCell
     let tweet = tweetInFocus
+    // lazyload for images
     twitterService?.fetchAuthorImage(tweet!, completionHandler: { (image) -> () in
       tweet!.image = image?
       self.tableView.reloadData()
@@ -56,6 +78,7 @@ class TweetDetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
     let authTimelineVC = self.storyboard?.instantiateViewControllerWithIdentifier("AUTHTIME_VC") as AuthorTimeline
     authTimelineVC.twitterService = self.twitterService!
     authTimelineVC.authorInFocus = self.tweetInFocus!.authorID
+    authTimelineVC.authorsTweet = self.tweetInFocus
     self.navigationController?.pushViewController(authTimelineVC, animated: true)
   }
   

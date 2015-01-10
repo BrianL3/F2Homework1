@@ -22,7 +22,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     tableView.dataSource = self
     tableView.delegate = self
     self.tableView.registerNib(UINib(nibName: "TweetCellView", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "TweetCell")
-
+    self.tableView.estimatedRowHeight = 120
+    self.tableView.rowHeight = UITableViewAutomaticDimension
     // begin Twitter API call
     self.twitterService.fetchHomeTimeline { (tweets, errorString) -> () in
       if errorString == nil {
@@ -42,12 +43,27 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as TweetViewCell
     let tweet = tweets[indexPath.row]
-    
+    // vvv there is NO image currently with the tweet, go get the image somehow (2 options)
     if tweet.image == nil{
-      twitterService.fetchAuthorImage(tweet, completionHandler: { (image) -> () in
-        tweet.image = image?
-        self.tableView.reloadData()
+      // vvv there is NO indexForKey, go get the image and populate the cache
+      if self.twitterService.imageCache.indexForKey(tweet.imgURL!) == nil {
+      twitterService.fetchAuthorImage(tweet, completionHandler: { (imageFromHandler) -> () in
+        tweet.image = imageFromHandler?
+        if imageFromHandler != nil{
+          self.twitterService.imageCache.updateValue(tweet.image!, forKey: tweet.imgURL!)
+          cell.authorImage?.image = self.twitterService.imageCache[tweet.imgURL!]
+        }
+        
       })
+        // vvv there IS an indexForKey, so grab the image from the cache
+      }else{
+        if tweet.imgURL != nil {
+          //var imageIndex = self.twitterService.imageCache.indexForKey(tweet.imgURL!)
+          tweet.image = self.twitterService.imageCache[tweet.imgURL!]
+          cell.authorImage?.image = tweet.image
+        }
+      }
+      // vvv there is a image for the tweet (we are scrolling over an area already seen)
     }else{
       cell.authorImage?.image = tweet.image
     }
@@ -65,7 +81,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     tweetVC.twitterService = self.twitterService
     tweetVC.tweetInFocus = self.tweets[indexPath.row]
     self.navigationController?.pushViewController(tweetVC, animated: true)
-
   }
 
   /*

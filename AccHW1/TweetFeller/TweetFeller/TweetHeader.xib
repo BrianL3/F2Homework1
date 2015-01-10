@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TweetHeader" customModule="TweetFeller" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="125"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="authName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BwR-2Q-4AK">
+                    <rect key="frame" x="116" y="8" width="79" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="locLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6w-sy-fXK">
+                    <rect key="frame" x="116" y="33" width="65" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="faveLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UyQ-tf-LDo">
+                    <rect key="frame" x="116" y="58" width="74" height="32"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EH4-hf-wpp">
+                    <rect key="frame" x="8" y="8" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="7eR-sg-0g1"/>
+                        <constraint firstAttribute="height" constant="100" id="Skm-fD-Qee"/>
+                    </constraints>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="k6w-sy-fXK" firstAttribute="top" secondItem="BwR-2Q-4AK" secondAttribute="bottom" constant="4" id="0bD-SD-oQg"/>
+                <constraint firstItem="EH4-hf-wpp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="OjX-LY-C6k"/>
+                <constraint firstItem="BwR-2Q-4AK" firstAttribute="leading" secondItem="EH4-hf-wpp" secondAttribute="trailing" constant="8" id="P96-OM-U9A"/>
+                <constraint firstItem="k6w-sy-fXK" firstAttribute="leading" secondItem="EH4-hf-wpp" secondAttribute="trailing" constant="8" id="WHQ-io-yPF"/>
+                <constraint firstItem="BwR-2Q-4AK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="aFX-9A-65h"/>
+                <constraint firstAttribute="bottom" secondItem="UyQ-tf-LDo" secondAttribute="bottom" constant="35" id="b22-92-9q5"/>
+                <constraint firstItem="UyQ-tf-LDo" firstAttribute="leading" secondItem="EH4-hf-wpp" secondAttribute="trailing" constant="8" id="cza-ud-A7V"/>
+                <constraint firstItem="EH4-hf-wpp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="eK1-Qo-eqj"/>
+                <constraint firstAttribute="trailing" secondItem="UyQ-tf-LDo" secondAttribute="trailing" priority="250" constant="442" id="iOG-yi-5qM"/>
+                <constraint firstItem="UyQ-tf-LDo" firstAttribute="top" secondItem="k6w-sy-fXK" secondAttribute="bottom" constant="4" id="jdC-al-6YD"/>
+                <constraint firstAttribute="bottom" secondItem="BwR-2Q-4AK" secondAttribute="bottom" constant="96" id="kTs-UZ-6OV"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="iOG-yi-5qM"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="faveCount" destination="UyQ-tf-LDo" id="4hr-2A-Tfq"/>
+                <outlet property="locationLabel" destination="k6w-sy-fXK" id="67e-B3-qp4"/>
+                <outlet property="nameLabel" destination="BwR-2Q-4AK" id="deA-eN-eva"/>
+                <outlet property="profilePictureButton" destination="EH4-hf-wpp" id="7g1-wR-rk3"/>
+            </connections>
+            <point key="canvasLocation" x="299" y="394.5"/>
+        </view>
+    </objects>
+</document>

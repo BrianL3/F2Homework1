@@ -33,11 +33,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="t19-PR-yDL" secondAttribute="bottom" id="2Q5-rk-wx1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="t19-PR-yDL" secondAttribute="trailing" constant="-16" id="2mu-sH-iQ8"/>
+                            <constraint firstItem="t19-PR-yDL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="LN1-vj-6TP"/>
                             <constraint firstItem="t19-PR-yDL" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="SiI-uP-WSF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="t19-PR-yDL" secondAttribute="trailing" constant="-16" id="VZh-hL-Hp8"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="t19-PR-yDL" secondAttribute="bottom" id="bln-Wq-XsB"/>
                             <constraint firstItem="t19-PR-yDL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="fYK-2I-klZ"/>
+                            <constraint firstItem="t19-PR-yDL" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="vJx-ec-Ht5"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2mu-sH-iQ8"/>
+                                <exclude reference="SiI-uP-WSF"/>
+                                <exclude reference="fYK-2I-klZ"/>
+                                <exclude reference="2Q5-rk-wx1"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="dj3-UZ-pgq"/>
                     <connections>
@@ -48,10 +60,10 @@
             </objects>
             <point key="canvasLocation" x="-557" y="668"/>
         </scene>
-        <!--Author Timeline-->
+        <!--Author's Timeline-->
         <scene sceneID="i4H-Ri-3Uu">
             <objects>
-                <viewController storyboardIdentifier="AUTHTIME_VC" id="Ldk-Bt-YvJ" customClass="AuthorTimeline" customModule="TweetFeller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AUTHTIME_VC" title="Author's Timeline" id="Ldk-Bt-YvJ" customClass="AuthorTimeline" customModule="TweetFeller" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xes-9i-odQ"/>
                         <viewControllerLayoutGuide type="bottom" id="85B-nt-QK0"/>
@@ -63,6 +75,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YL0-IY-c7Q">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleAspectFit" id="zq0-IN-A2B">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.32094000109999998" green="0.71906844969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TWEET_CELL" id="r7s-WC-QD2" customClass="TweetViewCell" customModule="TweetFeller" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -76,11 +93,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="YL0-IY-c7Q" secondAttribute="trailing" constant="-16" id="9AQ-up-Seg"/>
+                            <constraint firstItem="85B-nt-QK0" firstAttribute="top" secondItem="YL0-IY-c7Q" secondAttribute="bottom" id="9rC-xa-Zfx"/>
                             <constraint firstItem="YL0-IY-c7Q" firstAttribute="top" secondItem="m6L-k8-JFd" secondAttribute="topMargin" id="Dty-62-kBe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YL0-IY-c7Q" secondAttribute="trailing" constant="-16" id="HFZ-cN-In0"/>
-                            <constraint firstItem="85B-nt-QK0" firstAttribute="top" secondItem="YL0-IY-c7Q" secondAttribute="bottom" id="SdK-bh-62D"/>
+                            <constraint firstItem="YL0-IY-c7Q" firstAttribute="top" secondItem="m6L-k8-JFd" secondAttribute="topMargin" id="dgC-Qc-KoZ"/>
+                            <constraint firstItem="YL0-IY-c7Q" firstAttribute="top" secondItem="Xes-9i-odQ" secondAttribute="bottom" constant="-20" id="egY-La-rxk"/>
+                            <constraint firstItem="YL0-IY-c7Q" firstAttribute="leading" secondItem="m6L-k8-JFd" secondAttribute="leadingMargin" constant="-16" id="jLO-Ze-NzY"/>
                             <constraint firstItem="YL0-IY-c7Q" firstAttribute="leading" secondItem="m6L-k8-JFd" secondAttribute="leadingMargin" constant="-16" id="kHs-22-g2f"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Dty-62-kBe"/>
+                                <exclude reference="HFZ-cN-In0"/>
+                                <exclude reference="egY-La-rxk"/>
+                                <exclude reference="kHs-22-g2f"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="YL0-IY-c7Q" id="JI5-xz-R8R"/>
@@ -88,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z7s-T8-sUc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="111" y="15"/>
+            <point key="canvasLocation" x="125" y="43"/>
         </scene>
         <!--Tweet Detail-->
         <scene sceneID="9tH-0w-dcg">
@@ -102,13 +131,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="95" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dB1-H0-8EL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="95" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dB1-H0-8EL">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="0.32094000105071707" green="0.7190684496960823" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="9cY-7n-Qgg">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="111"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" red="0.32094000109999998" green="0.71906844969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TWEET_CELL" rowHeight="95" id="Xdi-GG-CRW" customClass="TweetViewCell" customModule="TweetFeller" customModuleProvider="target">
@@ -122,6 +152,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="dB1-H0-8EL" secondAttribute="trailing" constant="-16" id="JKi-Lj-DpE"/>
+                            <constraint firstItem="dB1-H0-8EL" firstAttribute="top" secondItem="5CL-7h-OcS" secondAttribute="topMargin" id="Zmc-bG-kux"/>
+                            <constraint firstItem="dB1-H0-8EL" firstAttribute="leading" secondItem="5CL-7h-OcS" secondAttribute="leadingMargin" constant="-16" id="fS3-EX-8HA"/>
+                            <constraint firstItem="f64-wa-exF" firstAttribute="top" secondItem="dB1-H0-8EL" secondAttribute="bottom" id="qy9-Wp-Mph"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="dB1-H0-8EL" id="27e-gN-oue"/>

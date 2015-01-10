@@ -16,6 +16,8 @@
 		FA3AC23B1A5B3154003DB9FF /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AC23A1A5B3154003DB9FF /* Tweet.swift */; };
 		FA3AC23D1A5B321A003DB9FF /* tweet.json in Resources */ = {isa = PBXBuildFile; fileRef = FA3AC23C1A5B321A003DB9FF /* tweet.json */; };
 		FA3AC23F1A5B3A29003DB9FF /* TweetCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AC23E1A5B3A29003DB9FF /* TweetCellView.swift */; };
+		FA5D41D81A606EEF00B2D666 /* TweetHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5D41D71A606EEF00B2D666 /* TweetHeader.xib */; };
+		FA5D41DA1A606FD400B2D666 /* TweetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5D41D91A606FD400B2D666 /* TweetHeader.swift */; };
 		FA85878B1A5DD504007265FB /* TwitterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA85878A1A5DD504007265FB /* TwitterService.swift */; };
 		FAD3A5421A5F298A007115F0 /* 120px-Merovingian_Bee.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD3A5411A5F298A007115F0 /* 120px-Merovingian_Bee.svg.png */; };
 		FAD3A5461A5F2D5C007115F0 /* TweetCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD3A5451A5F2D5C007115F0 /* TweetCellView.xib */; };
@@ -47,6 +49,8 @@
 		FA3AC23A1A5B3154003DB9FF /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		FA3AC23C1A5B321A003DB9FF /* tweet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tweet.json; sourceTree = "<group>"; };
 		FA3AC23E1A5B3A29003DB9FF /* TweetCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCellView.swift; sourceTree = "<group>"; };
+		FA5D41D71A606EEF00B2D666 /* TweetHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetHeader.xib; sourceTree = "<group>"; };
+		FA5D41D91A606FD400B2D666 /* TweetHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetHeader.swift; sourceTree = "<group>"; };
 		FA85878A1A5DD504007265FB /* TwitterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterService.swift; sourceTree = "<group>"; };
 		FAD3A5411A5F298A007115F0 /* 120px-Merovingian_Bee.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "120px-Merovingian_Bee.svg.png"; path = "Images.xcassets/120px-Merovingian_Bee.svg.png"; sourceTree = "<group>"; };
 		FAD3A5451A5F2D5C007115F0 /* TweetCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetCellView.xib; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 				FA3AC21B1A5B3072003DB9FF /* Main.storyboard */,
 				FA3AC23E1A5B3A29003DB9FF /* TweetCellView.swift */,
 				FAD3A5451A5F2D5C007115F0 /* TweetCellView.xib */,
+				FA5D41D71A606EEF00B2D666 /* TweetHeader.xib */,
+				FA5D41D91A606FD400B2D666 /* TweetHeader.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -240,6 +246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA5D41D81A606EEF00B2D666 /* TweetHeader.xib in Resources */,
 				FAD3A5461A5F2D5C007115F0 /* TweetCellView.xib in Resources */,
 				FA3AC21D1A5B3072003DB9FF /* Main.storyboard in Resources */,
 				FA3AC2221A5B3072003DB9FF /* LaunchScreen.xib in Resources */,
@@ -269,6 +276,7 @@
 				FA85878B1A5DD504007265FB /* TwitterService.swift in Sources */,
 				FA3AC23F1A5B3A29003DB9FF /* TweetCellView.swift in Sources */,
 				FA3AC2181A5B3072003DB9FF /* AppDelegate.swift in Sources */,
+				FA5D41DA1A606FD400B2D666 /* TweetHeader.swift in Sources */,
 				FAD3A54A1A5F57B4007115F0 /* AuthorTimeline.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

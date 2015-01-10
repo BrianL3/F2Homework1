@@ -15,6 +15,7 @@ class TwitterService {
   var accountID : ACAccountType?
   var twitterAccounts = [AnyObject]()
   var imageQueue = NSOperationQueue()
+  var imageCache = [NSURL : UIImage]()
   
   init(){
   }
@@ -109,7 +110,6 @@ class TwitterService {
             twitterRequest.performRequestWithHandler() { (jsonData, response, error) -> Void in
               switch response.statusCode {
               case 200...299:
-                println(response.statusCode)
                 var errorCode : NSError?
                 if let JSONArray = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &errorCode) as [AnyObject]? {
                   //working through all objects in the JSON array
@@ -187,6 +187,21 @@ class TwitterService {
           
           //return tweet.image!
           //        cell.tweetImageView.image = tweet.image
+        }
+        
+      })
+    }
+  }
+  
+  func fetchAuthorBackgroundImage(tweet: Tweet, completionHandler: (UIImage?) ->()){
+    if let imageURL = tweet.backgroundImgURL {
+      //self.imageQueue.maxConcurrentOperationCount = 1  (uncomment to make this a serial queue)
+      self.imageQueue.addOperationWithBlock({ () -> Void in
+        if let imageData = NSData(contentsOfURL: imageURL) {
+          tweet.backgroundImage = UIImage(data: imageData)
+          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            completionHandler(tweet.backgroundImage)
+          })
         }
         
       })

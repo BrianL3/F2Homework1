@@ -18,6 +18,11 @@ class Tweet {
   var id : String?
   var creationData : String?
   var authorID : String?
+  var timesFavorited : Int?
+  var userLocation : String?
+  var profileUsesBackgroundImage : Bool?
+  var backgroundImgURL : NSURL?
+  var backgroundImage : UIImage?
   
   init(jsonDict : [String : AnyObject]){
     self.text = jsonDict["text"] as String
@@ -34,5 +39,14 @@ class Tweet {
       self.creationData = jsonDict["created_at"] as String!
     }
     self.authorID = user["id_str"] as String!
+    if jsonDict["user"] != nil {
+      self.timesFavorited = self.user["favourites_count"] as? Int
+      self.userLocation = self.user["location"] as? String
+      self.profileUsesBackgroundImage = self.user["profile_use_background_image"] as? Bool
+      if profileUsesBackgroundImage == true {
+        self.backgroundImgURL = NSURL(string: self.user["profile_banner_url"] as String!) as NSURL!
+      }
+    }
+    
   }
 }
