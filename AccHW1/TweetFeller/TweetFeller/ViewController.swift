@@ -49,16 +49,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
       if self.twitterService.imageCache.indexForKey(tweet.imgURL!) == nil {
       twitterService.fetchAuthorImage(tweet, completionHandler: { (imageFromHandler) -> () in
         tweet.image = imageFromHandler?
+        // vvv check if we got an image at all - if we did, cache that bad boy
         if imageFromHandler != nil{
           self.twitterService.imageCache.updateValue(tweet.image!, forKey: tweet.imgURL!)
           cell.authorImage?.image = self.twitterService.imageCache[tweet.imgURL!]
         }
-        
       })
         // vvv there IS an indexForKey, so grab the image from the cache
       }else{
         if tweet.imgURL != nil {
-          //var imageIndex = self.twitterService.imageCache.indexForKey(tweet.imgURL!)
           tweet.image = self.twitterService.imageCache[tweet.imgURL!]
           cell.authorImage?.image = tweet.image
         }

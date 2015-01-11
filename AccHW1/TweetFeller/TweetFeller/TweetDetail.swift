@@ -12,10 +12,8 @@ import UIKit
 class TweetDetail: UIViewController, UITableViewDataSource, UITableViewDelegate {
   var tweetInFocus : Tweet?
   var twitterService : TwitterService?
-  
+  var authorButton : UIButton?
   @IBOutlet weak var tableView: UITableView!
-  //@IBOutlet weak var dateLabel: UILabel!
-  //@IBOutlet weak var textLabel: UILabel!
   
   
   override func viewDidLoad() {
@@ -29,7 +27,7 @@ class TweetDetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
     let headerArray = NSBundle.mainBundle().loadNibNamed("TweetHeader", owner: self, options: nil)
     let headerView = headerArray.first as TweetHeader
     self.tableView.tableHeaderView?.addSubview(headerView)
-
+    self.authorButton = headerView.profilePictureButton
     if twitterService != nil{
       self.twitterService?.fetchStatus(tweetInFocus!, tweetID: tweetInFocus!.id!, completionHandler: { (tweet, errorDescription) -> () in
         self.tweetInFocus = tweet
@@ -42,7 +40,6 @@ class TweetDetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
       if tweetInFocus!.timesFavorited != nil {
         headerView.faveCount?.text = String(self.tweetInFocus!.timesFavorited!) + " favorites"
       }
-
       if tweetInFocus?.profileUsesBackgroundImage == true {
         twitterService!.fetchAuthorBackgroundImage(tweetInFocus!, completionHandler: {(image) -> () in
           println("this is a placeholder")
@@ -50,30 +47,45 @@ class TweetDetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
         })
       }
     }
-    //textLabel?.text = tweetInFocus?.text
-    //dateLabel?.text = tweetInFocus?.creationData?
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as TweetViewCell
     let tweet = tweetInFocus
-    // lazyload for images
-    twitterService?.fetchAuthorImage(tweet!, completionHandler: { (image) -> () in
-      tweet!.image = image?
-      self.tableView.reloadData()
-    })
-    if tweet!.image != nil{
+    // vvv there is NO image currently with the tweet, go get the image somehow (2 options)
+    if tweet!.image == nil{
+      // vvv there is NO indexForKey, go get the image and populate the cache
+      if self.twitterService!.imageCache.indexForKey(tweet!.imgURL!) == nil {
+        twitterService!.fetchAuthorImage(tweet!, completionHandler: { (imageFromHandler) -> () in
+          tweet!.image = imageFromHandler?
+          // vvv check if we got an image at all - if we did, cache that bad boy
+          if imageFromHandler != nil{
+            self.twitterService!.imageCache.updateValue(tweet!.image!, forKey: tweet!.imgURL!)
+            cell.authorImage?.image = self.twitterService!.imageCache[tweet!.imgURL!]
+          }
+        })
+        // vvv there IS an indexForKey, so grab the image from the cache
+      }else{
+        if tweet!.imgURL != nil {
+          tweet!.image = self.twitterService!.imageCache[tweet!.imgURL!]
+          cell.authorImage?.image = tweet!.image
+        }
+      }
+      // vvv there is a image for the tweet (we are scrolling over an area already seen)
+    }else{
       cell.authorImage?.image = tweet!.image
     }
+    
     cell.tweetText?.text = tweet!.text
     cell.authorName?.text = "@" + tweet!.author + " tweeted:"
     return cell
   }
   
+  // having trouble making the cells static, so we just return 1
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return 1
   }
-  
+  // moving to the next view controller
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let authTimelineVC = self.storyboard?.instantiateViewControllerWithIdentifier("AUTHTIME_VC") as AuthorTimeline
     authTimelineVC.twitterService = self.twitterService!
@@ -81,5 +93,12 @@ class TweetDetail: UIViewController, UITableViewDataSource, UITableViewDelegate 
     authTimelineVC.authorsTweet = self.tweetInFocus
     self.navigationController?.pushViewController(authTimelineVC, animated: true)
   }
-  
+  // can't figure out how to set the outlet properly, as the button actually belongs to the TweetHeader xib
+  @IBAction func authorProfileButtonPress(sender: UIButton){
+    let authTimelineVC = self.storyboard?.instantiateViewControllerWithIdentifier("AUTHTIME_VC") as AuthorTimeline
+    authTimelineVC.twitterService = self.twitterService!
+    authTimelineVC.authorInFocus = self.tweetInFocus!.authorID
+    authTimelineVC.authorsTweet = self.tweetInFocus
+    self.navigationController?.pushViewController(authTimelineVC, animated: true)
+  }
 }
